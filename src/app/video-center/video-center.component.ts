@@ -18,7 +18,7 @@ export class VideoCenterComponent implements OnInit {
   //];
 
   selectedVideo:Video;
-  private hidenewVideo:boolean=true;
+  hidenewVideo:boolean=true;
 
   constructor(private _videoService:VideoService) { }
 

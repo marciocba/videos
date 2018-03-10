@@ -11,7 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class VideoDetailComponent implements OnInit {
   
   video: any;
-  private editTitle:boolean=false;
+  editTitle:boolean=false;
   private updateVideoEvent=new EventEmitter();
   private deleteVideoEvent=new EventEmitter();
   constructor(
