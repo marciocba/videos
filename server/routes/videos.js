@@ -2,15 +2,35 @@ const express = require('express');
 const router=express.Router();
 const mongoose =require('mongoose');
 const Video=require('../models/video')
+//const User=require('../models/user')
 
-const db="mongodb://marciocba:123456@ds055545.mlab.com:55545/videoplayer";
+
+/* const db="mongodb://marciocba:123456@ds055545.mlab.com:55545/videoplayer";
 mongoose.Promise=global.Promise;
 mongoose.connect(db,err=>{
     if (err){
         console.error("Error! "+err );
     }
 })
+ */// users model
+/* 
 
+router.post('/admin/user',function (req,res) {
+    console.log('Post a user');
+    var newUser = new User();
+    newUser.username=req.body.username;
+    newUser.password=req.body.password;
+    newUser.role='user'; //standard user... admin is for admin
+    
+    newUser.save(function(err,insertedUser){
+        if (err){
+            coonsole.log('Error saving user')
+        }else{
+            res.json(insertedUser)
+        }
+    });    
+});
+ *///
 router.get('/videos',function (req,res) {
     //res.send('api works');
     console.log('Get request for all videos');
@@ -22,7 +42,7 @@ router.get('/videos',function (req,res) {
             res.json(videos);
         }
     })
-});
+ });
 
 router.get('/video/:id',function (req,res) {
     //res.send('api works');
