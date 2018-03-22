@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { VideoService } from '../video.service';
-import { Video } from '../video';
 import {FormsModule} from '@angular/forms';
+import { VideoService } from '../shared/video.service';
+import { Video } from '../shared/video';
 
 @Component({
   selector: 'app-video',

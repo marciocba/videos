@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { Video } from '../../video';
+import { Video } from '../../shared/video';
 
 @Component({
   selector: 'app-list',
