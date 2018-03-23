@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
+import { SignInComponent } from './login/sign-in/sign-in.component';
+import { SignUpComponent } from './login/sign-up/sign-up.component';
 //import { VideoCenterModule } from '../video-center/video-center.module';
 //
 const routes: Routes = [
@@ -12,8 +14,14 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    children: [{ path: '', component: SignInComponent }]
   },
+  {
+    path: 'signup', component: LoginComponent,
+    children: [{ path: '', component: SignUpComponent }]
+  },
+
   {
     path: 'user',
     //canActivate: [AuthGuard],

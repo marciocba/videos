@@ -8,7 +8,7 @@ const path = require('path');
 const videosRoutes=require('./server/routes/videos');
 const userRoutes=require('./server/routes/users');
 
-const db="mongodb://marciocba:123456@ds055545.mlab.com:55545/videoplayer";
+const db="mongodb://marciocba:"+(process.env.MONGO_MLAB_PW)+"@ds055545.mlab.com:55545/videoplayer";
 mongoose.Promise=global.Promise;
 mongoose.connect(db,err=>{
     if (err){
