@@ -114,7 +114,11 @@ router.post('/user/login', (req, res, next) => {
                         );
                         return res.status(200).json({
                             message: 'Auth sucessful',
-                            token: token
+                            token: token,
+                            access_token: {
+                                user: user[0].username, 
+                                role: user[0].role
+                            }
                         });
                     }
                     return res.status(401).json({

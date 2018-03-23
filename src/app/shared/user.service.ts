@@ -8,7 +8,9 @@ const httpOptions = {
 
 @Injectable()
 export class UserService {
+  //for this code see the file 'api-xhrbackend.ts
   //readonly rootUrl = 'http://localhost:3000';
+
   constructor(private http: HttpClient) { }
   registerUser = function (user: any) {
     const body = {
@@ -23,6 +25,7 @@ export class UserService {
     );
   }
 
+  //retorn body
   userAuthentication(user: any) {
     const body = {
       email: user.email,

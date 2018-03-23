@@ -16,9 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XHRBackend } from '@angular/http';
 import { ApiXHRBackend } from '../shared/api-xhrbackend';
-
-//import { AuthenticationService } from './service/authentication.service';
-//import { AuthGuard } from './service/auth.guard';
+import { AuthenticationService } from './service/authentication.service';
+import { AuthGuard } from './service/auth.guard';
 
 
 @NgModule({
@@ -35,9 +34,10 @@ import { ApiXHRBackend } from '../shared/api-xhrbackend';
   ],
   providers:[
     UserService,
-    { provide: XHRBackend, useClass: ApiXHRBackend }
-    //AuthenticationService,
-    //AuthGuard
+    // base API URL
+    { provide: XHRBackend, useClass: ApiXHRBackend },
+    AuthenticationService,
+    AuthGuard
   ]
 })
 export class CoreModule { }

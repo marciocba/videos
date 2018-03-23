@@ -4,7 +4,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { SignInComponent } from './login/sign-in/sign-in.component';
 import { SignUpComponent } from './login/sign-up/sign-up.component';
-//import { VideoCenterModule } from '../video-center/video-center.module';
+import { AuthGuard } from './service/auth.guard';
+
 //
 const routes: Routes = [
   {
@@ -24,18 +25,18 @@ const routes: Routes = [
 
   {
     path: 'user',
-    //canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     loadChildren: '../user/user.module#UserModule'
   },
   {
     path: 'home',
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: '../home/home.module#HomeModule'
   },
 
    {
     path: 'videos',
-    //canActivateChild: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: '../video/video.module#VideoModule'
   }, 
    {
