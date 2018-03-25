@@ -1,5 +1,5 @@
 <div *ngIf="isLoginError" class="red-text error-message">
-  <i class="material-icons">error</i>Usuario or senha incorreta. tente novamente
+  <i class="material-icons">error</i>{{invalidCredentialMsg}}
 </div>
 <form class="col s12 white" #loginForm="ngForm" (ngSubmit)="OnSubmit(loginForm)">
   <div class="row">

@@ -4,6 +4,7 @@ import { User } from '../../shared/user.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 import { ADMIN, USER } from './roles';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
@@ -26,8 +27,57 @@ export class AuthenticationService {
           role: user[0].role
       }
     }; */
-
+  
   login(username: string, password: string) {
+
+    const body = {
+      email: username,
+      password: password
+    }
+    let promise = new Promise((resolve, reject) => {
+      var reqHeader = new HttpHeaders({ 'No-Auth': 'True' });
+      //api/admin prefix is added from api file
+      return this.http.post('/api/admin/user/login', body)
+        .toPromise()
+        .then(
+          (data: any) => {// Success
+            if (data) {
+              this.setToken(data);
+              this.router.navigate(['home']);
+              this.isloggedIn = true;
+              this.loggedInUser = data.access_token;
+
+              //this.router.navigate(['admin', 'dashboard']);
+
+              //let url = '/home';//this.authentication.getRedirectUrl();
+              //console.log('Redirect Url:' + url);
+              //this.router.navigate([url]);
+            } else {
+              this.isloggedIn = false;
+            }
+            resolve();
+            //this.toastr.success('User userAuthenticated successful');    
+          },
+          (err: HttpErrorResponse) => {
+            console.log("<HttpErrorResponse>=> erro da promessa:" + err.error);
+            this.SetErrorMsg(err.error);
+            this.router.navigate([this.loginUrl]);
+            this.isloggedIn = false;
+            this.loggedInUser = null;
+            reject(err);
+            return err.error;
+          }
+        )
+        .catch(err => {
+          console.log("promisse of err " + err);
+        }
+        )
+    });
+    return promise;
+  }
+
+
+  loginORIGINAL(username: string, password: string) {
 
     const body = {
       email: username,
@@ -44,7 +94,7 @@ export class AuthenticationService {
             this.router.navigate(['home']);
             this.isloggedIn = true;
             this.loggedInUser = data.access_token;
-       
+
             //this.router.navigate(['admin', 'dashboard']);
 
             //let url = '/home';//this.authentication.getRedirectUrl();
@@ -65,6 +115,7 @@ export class AuthenticationService {
         }
       );
   }
+
   SetErrorMsg(msg: string) {
     this.ErrorMsg = msg;
   }

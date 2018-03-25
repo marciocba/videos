@@ -28,10 +28,26 @@ export class SignInComponent implements OnInit {
   }
 
   login(email, password) {
-    this.authentication.login(email, password);
-    if (!this.authentication.isAuthenticated()) {
-      this.invalidCredentialMsg = 'Invalid Credentials. Try again.';
+    this.authentication.login(email, password).then((data: any) => {
+      // Success
     }
+    )
+    .catch(err => {
+      console.log("Erro da promissa " + err["status"]);
+      
+     // for(var propertyName in err) {
+     //   console.log("propertyName:"+propertyName+" value:"+err[propertyName])
+     //}
+     if (err["status"]=="401"){
+      this.isLoginError=true;
+      this.invalidCredentialMsg = "Usuario or senha incorreta. tente novamente"
+     }
+     if (err["status"]=="404"){
+      this.isLoginError=true;
+      this.invalidCredentialMsg = "error servidor. por favor tente mais tarde"
+     }
+    }
+    );
   }
 
   OnSubmit(form: NgForm) {

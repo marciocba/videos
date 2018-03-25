@@ -18,13 +18,14 @@ import { XHRBackend } from '@angular/http';
 import { ApiXHRBackend } from '../shared/api-xhrbackend';
 import { AuthenticationService } from './service/authentication.service';
 import { AuthGuard } from './service/auth.guard';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
   imports: [
     CommonModule,FormsModule,
     CoreRoutingModule,ToastrModule.forRoot(),HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,NgbModule.forRoot()
   ],
   declarations: [HeaderComponent, LoginComponent, NotFoundComponent, SignInComponent, SignUpComponent],
   exports: [

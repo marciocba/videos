@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HttpModule } from '@angular/http';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
